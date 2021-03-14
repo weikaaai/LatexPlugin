@@ -3,7 +3,7 @@
  * Plugin Name: Latex Plugin
  * Plugin URI: https://github.com/weikaaai/latex-plugin
  * Description: You can render LaTeX mathematical expressions using MathJax anywhere in your post.
- * Version: 1.1
+ * Version: 1.2
  * Author: Wei-Kai Fang
  * Author URI: https://github.com/weikaaai
  */
@@ -15,12 +15,12 @@
    wp_enqueue_style('latex');
    wp_enqueue_script('loadmathjax', plugins_url('latex-plugin/js/latest.js?config=TeX-MML-AM_CHTML-full,Safe'), '', '', false);
    // wp_enqueue_script('setup', plugins_url('latex-plugin/js/setup.js'), '', '', true);
-   wp_enqueue_script('requirejs', plugins_url('latex-plugin/js/requirejs.js'), '', '', true);
  }
 
- add_action('wp_footer', 'mathjax_config', 50);
+ add_action('wp_footer', 'mathjax_config', 30);
 
  function mathjax_config() {
+   echo '<script src="' . plugins_url('latex-plugin/js/requirejs.js') . '"></script>' . PHP_EOL;
    echo '<script type="text/x-mathjax-config">' . PHP_EOL;
    echo 'init_mathjax = function() {' . PHP_EOL;
    echo 'if (window.MathJax) {' . PHP_EOL;
